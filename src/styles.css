@@ -1,0 +1,543 @@
+:root {
+  --bg: #fff;
+  --fg: #000;
+  --muted: #000;
+  --accent: #000;
+  --hairline: rgba(0,0,0,1);
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Bastardo Grotesk', 'Noto Sans', sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: 1728px;
+  margin: 0 auto;
+  padding: 90px;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  margin-bottom: 0;
+}
+
+.brand {
+  font-family: 'Bastardo Grotesk', 'Noto Sans', sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  cursor: pointer;
+  position: relative;
+}
+
+.brand::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed var(--hairline);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.brand:hover::after {
+  opacity: 1;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.nav a {
+  font-family: 'Switzer', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--fg);
+  transition: color .2s ease;
+}
+
+.tab-navigation {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 72px 0 0 0;
+  padding-bottom: 10px;
+  position: relative;
+}
+
+.tab {
+  font-family: 'Bastardo Grotesk', 'Noto Sans', sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--fg);
+  transition: all .2s ease;
+  padding: 0;
+  line-height: 1;
+  position: relative;
+}
+
+.tab.active {
+  color: var(--fg);
+}
+
+.tab:not(.active) {
+  filter: blur(2px);
+  opacity: 0.7;
+}
+
+.gallery {
+  display: flex;
+  gap: 11.29px;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 0;
+  margin: 72px 0 0 0;
+  scroll-snap-type: x proximity;
+  position: relative;
+}
+
+.card {
+  position: relative;
+  scroll-snap-align: start;
+  border-radius: 0;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all .3s ease;
+  transform-origin: center;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.hover-cross {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  color: var(--fg);
+  font-weight: 300;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.card img { 
+  width: auto; 
+  height: auto; 
+  object-fit: cover; 
+  display: block;
+  filter: blur(2px);
+  transition: filter .2s ease;
+}
+
+.card:nth-child(5) img {
+  filter: none;
+}
+
+.card:hover img {
+  filter: none;
+}
+
+
+/* Index number circle that appears above the relevant image on hover */
+.card::before {
+  content: attr(data-item-id);
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px dashed var(--fg);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 100;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Show index marker for selected item */
+.card.selected::before {
+  opacity: 1;
+}
+
+/* Index number circle that appears above corresponding list item on image hover */
+.index-row::before {
+  content: attr(data-index-number);
+  position: absolute;
+  top: -15px;
+  left: -35px;
+  background: transparent;
+  color: var(--fg);
+  border: 1px dashed var(--fg);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 10;
+}
+
+/* Show the circle when the corresponding index row is hovered */
+.index-row.hovered::before {
+  opacity: 1;
+}
+
+.card-title {
+  display: none;
+}
+
+.index-list {
+  padding-top: 0;
+  margin-top: 64px;
+  position: relative;
+}
+
+/* Vertical line that extends up to meet the horizontal line */
+.index-list::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -64px;
+  bottom: 0;
+  width: 1px;
+  border-left: 1px dashed var(--hairline);
+}
+
+/* Horizontal line that connects to the vertical line - only under active tab */
+.tab.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -11px;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed var(--hairline);
+}
+
+/* Active tab extends most of the way but stops before connecting to vertical line */
+.tab.active::after {
+  width: calc(100% - 20px);
+}
+
+.index-row {
+  display: flex;
+  gap: 20px;
+  padding: 5px 10px 10px 10px;
+  margin-bottom: 25px;
+  border-bottom: 1px dashed var(--hairline);
+  align-items: center;
+  position: relative;
+  opacity: 0.7;
+  transition: opacity .2s ease;
+}
+
+.index-row:nth-child(4) {
+  opacity: 1;
+}
+
+.index-row:hover {
+  opacity: 1;
+}
+
+.index-row.selected {
+  opacity: 1;
+}
+
+.index-row.selected::before {
+  content: attr(data-index-number);
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 1px dashed var(--hairline);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bastardo Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--fg);
+  background: var(--bg);
+  z-index: 5;
+}
+
+.index-row .date { 
+  font-family: 'Bastardo Grotesk', 'Noto Sans', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--fg);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.index-row .title { 
+  font-family: 'Bastardo Grotesk', 'Noto Sans', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: var(--fg);
+  flex: 1;
+  line-height: 1;
+}
+
+.index-row:nth-child(4) .title {
+  font-weight: 300;
+}
+
+.index-row .num { 
+  font-family: 'Bastardo Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--fg);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.sticky-dot {
+  display: none;
+}
+
+.footer {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 32px 0;
+  margin-top: 50px;
+}
+
+/* About page styles */
+.about-content {
+  display: flex;
+  gap: 191px;
+  margin-top: 192px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Remove container padding for about page */
+.about-page .container {
+  padding: 0 !important;
+}
+
+.about-left {
+  width: 400px;
+  flex-shrink: 0;
+}
+
+.profile-image {
+  width: 400px;
+  height: 400px;
+  margin-bottom: 50px;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bio {
+  margin-bottom: 118px;
+}
+
+.bio p {
+  font-family: 'Switzer', 'Noto Sans', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--fg);
+  margin: 0;
+}
+
+.contact a {
+  font-family: 'Switzer', 'Noto Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+
+.about-right {
+  flex-shrink: 0;
+}
+
+.speaking-section {
+  position: relative;
+  width: fit-content;
+}
+
+.speaking-section::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  border-left: 1px dashed var(--hairline);
+}
+
+.section-title {
+  font-family: 'Switzer', 'Noto Sans', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  color: var(--fg);
+  margin: 0 0 85px 8px;
+}
+
+.speaking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 85px;
+}
+
+.speaking-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 10px;
+  position: relative;
+  min-height: 58px;
+}
+
+.speaking-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60%;
+  height: 1px;
+  border-bottom: 1px dashed var(--hairline);
+}
+
+.speaker-label {
+  font-family: 'Bastardo Grotesk', 'Noto Sans', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--fg);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.speaking-item.highlighted .speaker-label {
+  color: var(--fg);
+}
+
+.event-name {
+  font-family: 'Bastardo Grotesk', 'Noto Sans', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: var(--fg);
+  flex: 1;
+}
+
+.nav-link.active {
+  color: var(--fg);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 35px;
+  }
+  
+  .brand {
+    font-size: 0;
+    color: transparent;
+  }
+  
+  .brand::after {
+    content: "O.H";
+    font-size: 36px;
+    font-family: 'Bastardo Grotesk', 'Noto Sans', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--fg);
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .brand::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed var(--hairline);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 1;
+  }
+  
+  .brand:hover::before {
+    opacity: 1;
+  }
+  
+  .about-content {
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 50px;
+  }
+  
+  .about-left,
+  .about-right {
+    width: 100%;
+  }
+  
+  .profile-image {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    margin: 0 auto 30px;
+  }
+  
+  .speaking-list {
+    gap: 40px;
+  }
+}
