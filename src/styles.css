@@ -361,6 +361,10 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap;
 }
 
+.about-page .header {
+  margin-bottom: 80px;
+}
+
 .about-left {
   width: 100%;
   max-width: 400px;
@@ -533,6 +537,7 @@ a { color: inherit; text-decoration: none; }
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 50px;
   }
 
   .nav a {
@@ -581,6 +586,10 @@ a { color: inherit; text-decoration: none; }
     margin-top: 100px;
   }
 
+  .about-page .header {
+    margin-bottom: 60px;
+  }
+
   .bio {
     margin-bottom: 60px;
   }
@@ -589,6 +598,10 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 480px) {
   .about-page .container {
     padding: 80px 24px 24px;
+  }
+
+  .about-page .header {
+    margin-bottom: 40px;
   }
 
   .bio p {
