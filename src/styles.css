@@ -496,7 +496,6 @@ a { color: inherit; text-decoration: none; }
   }
   
   .header {
-    gap: 16px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -504,28 +503,26 @@ a { color: inherit; text-decoration: none; }
   }
 
   .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .brand::after,
-  .brand::before {
-    position: static;
+    font-size: 0;
+    color: transparent;
   }
 
   .brand::after {
     content: "O.H";
-    font-size: 26px;
+    font-size: 28px;
+    font-family: 'Bastardo Grotesk', 'Noto Sans', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--fg);
+    display: inline-block;
     opacity: 1;
-  }
-
-  .brand::before {
-    display: none;
-  }
-
-  .brand span {
-    font-size: 18px;
+    position: static;
+    border: none;
+    width: auto;
+    height: auto;
+    bottom: auto;
+    left: auto;
   }
 
   .nav a {
