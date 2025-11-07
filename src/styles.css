@@ -348,28 +348,32 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* About page styles */
-.about-content {
-  display: flex;
-  gap: 191px;
-  margin-top: 192px;
-  justify-content: center;
-  align-items: flex-start;
+.about-page .container {
+  padding: 90px;
 }
 
-/* Remove container padding for about page */
-.about-page .container {
-  padding: 0 !important;
+.about-content {
+  display: flex;
+  gap: 160px;
+  margin-top: 160px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .about-left {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-image {
-  width: 400px;
-  height: 400px;
-  margin-bottom: 50px;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  margin: 0 0 50px;
 }
 
 .profile-image img {
@@ -402,11 +406,14 @@ a { color: inherit; text-decoration: none; }
 
 .about-right {
   flex-shrink: 0;
+  width: 100%;
+  max-width: 480px;
 }
 
 .speaking-section {
   position: relative;
-  width: fit-content;
+  width: 100%;
+  max-width: 480px;
 }
 
 .speaking-section::before {
@@ -524,20 +531,72 @@ a { color: inherit; text-decoration: none; }
     gap: 50px;
     margin-top: 50px;
   }
-  
+ 
   .about-left,
   .about-right {
     width: 100%;
+    max-width: 100%;
   }
-  
+ 
   .profile-image {
-    width: 100%;
-    max-width: 300px;
-    height: 300px;
+    max-width: 320px;
     margin: 0 auto 30px;
   }
-  
+ 
   .speaking-list {
     gap: 40px;
+  }
+
+  .speaking-item {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .speaker-label,
+  .event-name {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .about-page .container {
+    padding: 50px;
+  }
+
+  .about-content {
+    gap: 80px;
+    margin-top: 100px;
+  }
+
+  .bio {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-page .container {
+    padding: 24px;
+  }
+
+  .bio p {
+    font-size: 18px;
+  }
+
+  .speaker-label,
+  .event-name {
+    font-size: 18px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+
+  .speaking-item::after {
+    width: 100%;
+  }
+
+  .contact a {
+    font-size: 14px;
   }
 }

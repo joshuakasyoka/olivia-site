@@ -1,19 +1,20 @@
-import { Link } from 'react-router-dom'
+import profileImage from '../assets/OH_3.png'
 
 export default function About() {
   return (
-    <div style={{ backgroundColor: 'red' }}>
-      <div className="header">
-      </div>
-      
-      <div className="about-content">
-        <div className="about-left">
-          <div className="profile-image">
-            <img 
-              src="http://localhost:3845/assets/f7fdaaf79d3bad8c06b9f42058275cfe709b2011.png" 
-              alt="Olivia Hingley"
-            />
-          </div>
+    <div className="about-page" style={{ backgroundColor: '#74C5F1' }}>
+      <div className="container">
+        <div className="header">
+        </div>
+        
+        <div className="about-content">
+          <div className="about-left">
+            <div className="profile-image">
+              <img
+                src={profileImage}
+                alt="Olivia Hingley"
+              />
+            </div>
           
           <div className="bio">
             <p>
@@ -56,6 +57,7 @@ export default function About() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }
