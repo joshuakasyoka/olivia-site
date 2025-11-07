@@ -349,7 +349,7 @@ a { color: inherit; text-decoration: none; }
 
 /* About page styles */
 .about-page .container {
-  padding: 90px;
+  padding: 160px 90px 90px;
 }
 
 .about-content {
@@ -493,11 +493,13 @@ a { color: inherit; text-decoration: none; }
   .brand {
     font-size: 0;
     color: transparent;
+    display: flex;
+    align-items: center;
   }
   
   .brand::after {
     content: "O.H";
-    font-size: 36px;
+    font-size: 28px;
     font-family: 'Bastardo Grotesk', 'Noto Sans', sans-serif;
     font-weight: 400;
     letter-spacing: -0.02em;
@@ -526,7 +528,17 @@ a { color: inherit; text-decoration: none; }
   .brand:hover::before {
     opacity: 1;
   }
-  
+
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav a {
+    font-size: 16px;
+  }
+
   .about-content {
     flex-direction: column;
     gap: 50px;
@@ -555,13 +567,13 @@ a { color: inherit; text-decoration: none; }
 
   .speaker-label,
   .event-name {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
 @media (max-width: 1024px) {
   .about-page .container {
-    padding: 50px;
+    padding: 110px 50px 50px;
   }
 
   .about-content {
@@ -576,20 +588,20 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 480px) {
   .about-page .container {
-    padding: 24px;
+    padding: 80px 24px 24px;
   }
 
   .bio p {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .speaker-label,
   .event-name {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .section-title {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 40px;
   }
 
