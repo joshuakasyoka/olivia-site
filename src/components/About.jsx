@@ -2,7 +2,7 @@ import profileImage from '../assets/OH_3.png'
 
 export default function About() {
   return (
-    <div className="about-page" style={{ backgroundColor: '#74C5F1' }}>
+    <div className="about-page" style={{ backgroundColor: '#74C5F1', paddingTop: '50px' }}>
       <div className="container">
         <div className="header">
         </div>
