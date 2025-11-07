@@ -495,50 +495,37 @@ a { color: inherit; text-decoration: none; }
     padding: 35px;
   }
   
-  .brand {
-    font-size: 0;
-    color: transparent;
-    display: flex;
-    align-items: center;
-  }
-  
-  .brand::after {
-    content: "O.H";
-    font-size: 28px;
-    font-family: 'Bastardo Grotesk', 'Noto Sans', sans-serif;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    color: var(--fg);
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 1;
-  }
-  
-  .brand::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px dashed var(--hairline);
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    z-index: 1;
-  }
-  
-  .brand:hover::before {
-    opacity: 1;
-  }
-
   .header {
+    gap: 16px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 50px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand::after,
+  .brand::before {
+    position: static;
+  }
+
+  .brand::after {
+    content: "O.H";
+    font-size: 26px;
+    opacity: 1;
+  }
+
+  .brand::before {
+    display: none;
+  }
+
+  .brand span {
+    font-size: 18px;
   }
 
   .nav a {
@@ -598,6 +585,10 @@ a { color: inherit; text-decoration: none; }
 
   .speaker-label,
   .event-name {
+    font-size: 16px;
+  }
+
+  .section-title {
     font-size: 18px;
   }
 }
