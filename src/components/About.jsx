@@ -70,7 +70,7 @@ export default function About() {
   }, { scope: pageRef })
 
   return (
-    <div className="about-page" ref={pageRef} style={{ paddingTop: '50px' }}>
+    <div className="about-page" ref={pageRef}>
       <div className="container">
         <div className="header">
         </div>

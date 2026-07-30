@@ -187,37 +187,18 @@ function HomePage({ introComplete, onIntroComplete, ruleVariant }) {
 
       <div className="index-guide" ref={tabsRef}>
         <div className="tab-navigation">
-          {activeTab === 'articles' ? (
-            <>
-              <button
-                className="tab active"
-                onClick={() => switchTab('articles')}
-              >
-                Writing.
-              </button>
-              <button
-                className="tab"
-                onClick={() => switchTab('talks')}
-              >
-                Speaking.
-              </button>
-            </>
-          ) : (
-            <>
-              <button
-                className="tab active"
-                onClick={() => switchTab('talks')}
-              >
-                Speaking.
-              </button>
-              <button
-                className="tab"
-                onClick={() => switchTab('articles')}
-              >
-                Writing.
-              </button>
-            </>
-          )}
+          <button
+            className={`tab${activeTab === 'articles' ? ' active' : ''}`}
+            onClick={() => switchTab('articles')}
+          >
+            Writing.
+          </button>
+          <button
+            className={`tab${activeTab === 'talks' ? ' active' : ''}`}
+            onClick={() => switchTab('talks')}
+          >
+            Speaking.
+          </button>
         </div>
 
         <IndexList
@@ -232,7 +213,7 @@ function HomePage({ introComplete, onIntroComplete, ruleVariant }) {
           onIndexClick={onIndexClick}
         />
 
-        <GuideL variant={ruleVariant} key={activeTab} />
+        <GuideL variant={ruleVariant} activeKey={activeTab} />
       </div>
 
       <div className="footer">© Copyright Olivia Hingley - Website designed by Josh Green</div>

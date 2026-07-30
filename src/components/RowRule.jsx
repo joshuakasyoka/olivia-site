@@ -13,7 +13,7 @@ export default function RowRule({ variant = 'dash' }) {
 }
 
 /** ⌞ guide: tab underline + vertical rail */
-export function GuideL({ variant = 'dash', tabSelector = '.tab.active' }) {
+export function GuideL({ variant = 'dash', tabSelector = '.tab.active', activeKey }) {
   const ref = useRef(null)
   const [box, setBox] = useState({ top: 0, tabW: 120, height: 400 })
 
@@ -33,8 +33,9 @@ export function GuideL({ variant = 'dash', tabSelector = '.tab.active' }) {
         const tabRect = tab.getBoundingClientRect()
         const listRect = list.getBoundingClientRect()
         const top = tabRect.bottom - rootRect.top + 10
+        // Horizontal arm grows from the fixed left rail to the active tab’s right edge
+        const tabW = Math.max(40, Math.round(tabRect.right - rootRect.left) - 2)
         const height = Math.max(80, Math.round(listRect.bottom - rootRect.top - top))
-        const tabW = Math.max(40, Math.round(tabRect.width - 20))
 
         setBox((prev) =>
           prev.top === top && prev.tabW === tabW && prev.height === height
@@ -47,13 +48,15 @@ export function GuideL({ variant = 'dash', tabSelector = '.tab.active' }) {
     measure()
     const ro = new ResizeObserver(measure)
     ro.observe(root)
+    const tab = root.querySelector(tabSelector)
+    if (tab) ro.observe(tab)
     window.addEventListener('resize', measure)
     return () => {
       cancelAnimationFrame(raf)
       ro.disconnect()
       window.removeEventListener('resize', measure)
     }
-  }, [tabSelector])
+  }, [tabSelector, activeKey, variant])
 
   return (
     <div
@@ -62,6 +65,7 @@ export function GuideL({ variant = 'dash', tabSelector = '.tab.active' }) {
       aria-hidden="true"
       style={{
         top: box.top,
+        left: 0,
         height: box.height,
         ['--guide-tab-w']: `${box.tabW}px`,
       }}
